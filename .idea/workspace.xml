@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8bf6453-5801-4780-9db1-3db587b557d8" name="Default Changelist" comment="" />
+    <list default="true" id="f8bf6453-5801-4780-9db1-3db587b557d8" name="Default Changelist" comment="added readme file">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,17 +60,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="project-template" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="project-template" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="project-template" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
             </expand>
@@ -64,7 +78,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1jrbvSullSfxjO2m514be244wOP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -72,7 +86,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -80,7 +93,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/META-INF" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -93,6 +106,7 @@
       <recent name="be.kuleuven.csa.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kamie\OneDrive - Universiteit Hasselt\3 ba IIW\databases\taak\javaGitProject\DAB_project\src\main\resources\META-INF" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
@@ -141,18 +155,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -165,20 +168,51 @@
       <updated>1604565387773</updated>
       <workItem from="1604565390257" duration="6279000" />
     </task>
+    <task id="LOCAL-00001" summary="added readme file">
+      <created>1608721363245</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608721363245</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added readme file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added readme file" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2047" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604571080590">
       <screen x="1440" y="23" width="1920" height="1053" />
     </state>
     <state x="2047" y="359" key="#com.intellij.fileTypes.FileTypeChooser/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604571080590" />
+    <state x="3005" y="416" key="#com.intellij.ide.util.MemberChooser" timestamp="1608728714668">
+      <screen x="1920" y="0" width="2560" height="1400" />
+    </state>
+    <state x="3005" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608728714668" />
     <state x="2273" y="263" width="729" height="573" key="#xdebugger.evaluate" timestamp="1604572497531">
       <screen x="1440" y="23" width="1920" height="1053" />
     </state>
     <state x="2273" y="263" width="729" height="573" key="#xdebugger.evaluate/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604572497531" />
+    <state x="2980" y="455" key="FileChooserDialogImpl" timestamp="1608726969371">
+      <screen x="1920" y="0" width="2560" height="1400" />
+    </state>
+    <state x="2980" y="455" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608726969371" />
     <state width="1878" height="356" key="GridCell.Tab.0.bottom" timestamp="1604573785520">
       <screen x="1440" y="23" width="1920" height="1053" />
     </state>
@@ -219,6 +253,10 @@
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="1909" y="188" key="SettingsEditor/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604566801549" />
+    <state x="2792" y="433" key="Vcs.Push.Dialog.v2" timestamp="1608721591814">
+      <screen x="1920" y="0" width="2560" height="1400" />
+    </state>
+    <state x="2792" y="433" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608721591814" />
     <state x="2065" y="255" width="670" height="675" key="run.anything.popup" timestamp="1604567069727">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
