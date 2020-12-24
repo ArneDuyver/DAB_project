@@ -1,9 +1,8 @@
 package be.kuleuven.csa.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Pakketbeschrijving {
@@ -19,6 +18,9 @@ public class Pakketbeschrijving {
     private int volwassenen;
     @Column
     private int kinderen;
+    @OneToMany(mappedBy = "Pakketbeschrijving")
+    private Set<Verkoopt> boerderijen = new HashSet<Verkoopt>(); ;
+
 
     public Pakketbeschrijving(String naam, int volwassenen, int kinderen) {
         this.naam = naam;
@@ -61,5 +63,20 @@ public class Pakketbeschrijving {
 
     public int getKinderen() {
         return kinderen;
+    }
+
+    public Set<Verkoopt> getBoerderijen() {
+        return boerderijen;
+    }
+
+    @Override
+    public String toString() {
+        return "Pakketbeschrijving{" +
+                "pakketBeschrijvingId=" + pakketBeschrijvingId +
+                ",naam='" + naam + '\'' +
+                ", grootte='" + grootte + '\'' +
+                ", volwassenen=" + volwassenen +
+                ", kinderen=" + kinderen +
+                '}';
     }
 }

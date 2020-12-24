@@ -17,9 +17,9 @@ public class Klant {
     @Column
     private String email;
     @Column
-    private int telefoonnummer;
+    private String telefoonnummer;
 
-    public Klant(String naam, String adres, String email, int telefoonnummer) {
+    public Klant(String naam, String adres, String email, String telefoonnummer) {
         this.naam = naam;
         this.adres = adres;
         this.email = email;
@@ -54,11 +54,21 @@ public class Klant {
         this.email = email;
     }
 
-    public int getTelefoonnummer() {
+    public String getTelefoonnummer() {
         return telefoonnummer;
     }
 
-    public void setTelefoonnummer(int telefoonnummer) {
+    public void setTelefoonnummer(String telefoonnummer) {
         this.telefoonnummer = telefoonnummer;
+    }
+    @Override
+    public String toString() {
+        return "Klant{" +
+                "klantId=" + klantId +
+                ",naam='" + naam + '\'' +
+                ", adres='" + adres + '\'' +
+                ", email=" + email +
+                ", telefoonnummer=" + telefoonnummer +
+                '}';
     }
 }

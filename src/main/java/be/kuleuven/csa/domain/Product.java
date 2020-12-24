@@ -39,4 +39,12 @@ public class Product {
     public String getSoort() {
         return soort;
     }
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ",naam='" + naam + '\'' +
+                ", soort='" + soort + '\'' +
+                '}';
+    }
 }
