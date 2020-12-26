@@ -80,7 +80,6 @@ public class csaRepositoryJpaImpl implements csaRepository {
         var criteriabuilder = entityManager.getCriteriaBuilder();
         var query = criteriabuilder.createQuery(Klant.class);
         var root = query.from(Klant.class);
-
         query.where(criteriabuilder.equal(root.get("naam"), klant));
         return entityManager.createQuery(query).getResultList() ;
     }
@@ -143,6 +142,21 @@ public class csaRepositoryJpaImpl implements csaRepository {
         entityManager.persist(verkoopt);
         entityManager.getTransaction().commit();
     }
+
+    @Override
+    public void updateVerkoopt(Verkoopt verkoopt) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(verkoopt);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void deleteVerkoopt(Verkoopt verkoopt) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(verkoopt);
+        entityManager.getTransaction().commit();
+    }
+
     @Override
     public void saveNewKoopt(Koopt koopt) {
         entityManager.getTransaction().begin();
@@ -150,6 +164,19 @@ public class csaRepositoryJpaImpl implements csaRepository {
         entityManager.getTransaction().commit();
     }
 
+    @Override
+    public void updateKoopt(Koopt koopt) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(koopt);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void deleteKoopt(Koopt koopt) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(koopt);
+        entityManager.getTransaction().commit();
+    }
 
     @Override
     public void saveNewPakketinhoud(PakketInhoud pakketInhoud) {
@@ -157,4 +184,92 @@ public class csaRepositoryJpaImpl implements csaRepository {
         entityManager.persist(pakketInhoud);
         entityManager.getTransaction().commit();
     }
+
+    @Override
+    public void updatePakketinhoud(PakketInhoud pakketInhoud) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(pakketInhoud);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void deletePakketinhoud(PakketInhoud pakketInhoud) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(pakketInhoud);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void saveNewBehoortTot(BehoortTot behoortTot) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(behoortTot);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void updateBehoortTot(BehoortTot behoortTot) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(behoortTot);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void deleteBehoortTot(BehoortTot behoortTot) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(behoortTot);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void saveNewBevat(Bevat bevat) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(bevat);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void updateBevat(Bevat bevat) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(bevat);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void deleteBevat(Bevat bevat) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(bevat);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void saveNewHaaltAf(HaaltAf haaltAf) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(haaltAf);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void updateHaaltAf(HaaltAf haaltAf) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(haaltAf);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void deleteHaaltAf(HaaltAf haaltAf) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(haaltAf);
+        entityManager.getTransaction().commit();
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

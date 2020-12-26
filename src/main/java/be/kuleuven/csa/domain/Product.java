@@ -13,17 +13,18 @@ public class Product {
     private String naam;
     @Column
     private String soort;
-    @OneToMany(mappedBy = "boerderij")
-    private List<Verkoopt> verkooptList;
+    @OneToMany(mappedBy = "product")
+    private List<Bevat> bevatList;
+
 
     public Product(String naam, String soort) {
         this.naam = naam;
         this.soort = soort;
-        this.verkooptList = new ArrayList<Verkoopt>();
+        this.bevatList = new ArrayList<>();
     }
 
-    public List<Verkoopt> getVerkooptList() {
-        return verkooptList;
+    public List<Bevat> getBevatList() {
+        return bevatList;
     }
 
     public void setNaam(String naam) {
