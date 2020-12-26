@@ -10,6 +10,9 @@
         <class>be.kuleuven.csa.domain.Product</class>
         <class>be.kuleuven.csa.domain.Klant</class>
         <class>be.kuleuven.csa.domain.Pakketbeschrijving</class>
+        <class>be.kuleuven.csa.domain.Koopt</class>
+        <class>be.kuleuven.csa.domain.BehoortTot</class>
+        <class>be.kuleuven.csa.domain.PakketInhoud</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:csa.db"/>

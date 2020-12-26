@@ -1,8 +1,8 @@
 package be.kuleuven.csa.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Pakketbeschrijving {
@@ -13,36 +13,30 @@ public class Pakketbeschrijving {
     @Column
     private String naam;
     @Column
-    private String grootte;
-    @Column
     private int volwassenen;
     @Column
     private int kinderen;
-    @OneToMany(mappedBy = "Pakketbeschrijving")
-    private Set<Verkoopt> boerderijen = new HashSet<Verkoopt>(); ;
+    @OneToMany(mappedBy = "boerderij")
+    private List<Verkoopt> verkooptList;
 
 
     public Pakketbeschrijving(String naam, int volwassenen, int kinderen) {
         this.naam = naam;
         this.volwassenen = volwassenen;
         this.kinderen = kinderen;
-        this.grootte  = ""+naam+volwassenen+kinderen;
+        this.verkooptList = new ArrayList<Verkoopt>();
     }
 
     public void setNaam(String naam) {
         this.naam = naam;
-        this.grootte  = ""+naam+volwassenen+kinderen;
     }
 
     public void setVolwassenen(int volwassenen) {
         this.volwassenen = volwassenen;
-        this.grootte  = ""+naam+volwassenen+kinderen;
     }
 
     public void setKinderen(int kinderen) {
         this.kinderen = kinderen;
-        this.grootte  = ""+naam+volwassenen+kinderen;
-
     }
 
     public int getPakketBeschrijvingId() {
@@ -53,10 +47,6 @@ public class Pakketbeschrijving {
         return naam;
     }
 
-    public String getGrootte() {
-        return grootte;
-    }
-
     public int getVolwassenen() {
         return volwassenen;
     }
@@ -65,8 +55,8 @@ public class Pakketbeschrijving {
         return kinderen;
     }
 
-    public Set<Verkoopt> getBoerderijen() {
-        return boerderijen;
+    public List<Verkoopt> getVerkooptList() {
+        return verkooptList;
     }
 
     @Override
@@ -74,7 +64,6 @@ public class Pakketbeschrijving {
         return "Pakketbeschrijving{" +
                 "pakketBeschrijvingId=" + pakketBeschrijvingId +
                 ",naam='" + naam + '\'' +
-                ", grootte='" + grootte + '\'' +
                 ", volwassenen=" + volwassenen +
                 ", kinderen=" + kinderen +
                 '}';

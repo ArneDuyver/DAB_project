@@ -1,6 +1,8 @@
 package be.kuleuven.csa.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Verkoopt {
@@ -11,23 +13,30 @@ public class Verkoopt {
     private int prijs;
     @Column
     private String startdatum;
-    @ManyToOne
-    @JoinColumn(name = "BoerderijId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "boerderijId")
     private Boerderij boerderij;
-    @ManyToOne
-    @JoinColumn(name = "pakketBeschrijvingsId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PakketbeschrijvingId")
     private Pakketbeschrijving pakketbeschrijving;
+    @OneToMany(mappedBy = "verkoopt")
+    private List<Koopt> kooptList;
 
-    public Verkoopt(int prijs, String startdatum, Boerderij boerderij, Pakketbeschrijving pakketbeschrijving) {
+
+    public Verkoopt(int prijs, String startdatum, Boerderij boerderij,Pakketbeschrijving pakketbeschrijving) {
         this.prijs = prijs;
         this.startdatum = startdatum;
         this.boerderij = boerderij;
+        boerderij.getVerkooptList().add(this);
         this.pakketbeschrijving = pakketbeschrijving;
-
-        boerderij.getPakketbeschrijvingen().add(this);
-        pakketbeschrijving.getBoerderijen().add(this);
+        pakketbeschrijving.getVerkooptList().add(this);
+        this.kooptList = new ArrayList<Koopt>();
     }
 
+
+    public List<Koopt> getKooptList() {
+        return kooptList;
+    }
 
     public int getPrijs() {
         return prijs;
@@ -41,9 +50,6 @@ public class Verkoopt {
         return boerderij;
     }
 
-    public Pakketbeschrijving getPakketbeschrijving() {
-        return pakketbeschrijving;
-    }
 
     public void setPrijs(int prijs) {
         this.prijs = prijs;
@@ -57,7 +63,4 @@ public class Verkoopt {
         this.boerderij = boerderij;
     }
 
-    public void setPakketbeschrijving(Pakketbeschrijving pakketbeschrijving) {
-        this.pakketbeschrijving = pakketbeschrijving;
-    }
 }

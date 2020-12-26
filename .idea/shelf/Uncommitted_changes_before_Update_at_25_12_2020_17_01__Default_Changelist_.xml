@@ -1,0 +1,59 @@
+<changelist name="Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]" date="1608912133357" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/12/2020 17:01 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.3/fileHashes/fileHashes.lock" />
+    <option name="AFTER_PATH" value=".gradle/6.3/fileHashes/fileHashes.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/fileHashes.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="AFTER_PATH" value=".gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/buildOutputCleanup.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.3/executionHistory/executionHistory.bin" />
+    <option name="AFTER_PATH" value=".gradle/6.3/executionHistory/executionHistory.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/executionHistory.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.3/fileHashes/fileHashes.bin" />
+    <option name="AFTER_PATH" value=".gradle/6.3/fileHashes/fileHashes.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/fileHashes.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.3/javaCompile/classAnalysis.bin" />
+    <option name="AFTER_PATH" value=".gradle/6.3/javaCompile/classAnalysis.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/classAnalysis.bin" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/be/kuleuven/csa/domain/Pakketbeschrijving.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/be/kuleuven/csa/domain/Pakketbeschrijving.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/Pakketbeschrijving.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/be/kuleuven/csa/domain/Boerderij.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/be/kuleuven/csa/domain/Boerderij.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/Boerderij.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="build/classes/java/main/be/kuleuven/csa/domain/dbTest.class" />
+    <option name="AFTER_PATH" value="build/classes/java/main/be/kuleuven/csa/domain/dbTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/dbTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.3/executionHistory/executionHistory.lock" />
+    <option name="AFTER_PATH" value=".gradle/6.3/executionHistory/executionHistory.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/executionHistory.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".gradle/6.3/javaCompile/javaCompile.lock" />
+    <option name="AFTER_PATH" value=".gradle/6.3/javaCompile/javaCompile.lock" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/javaCompile.lock" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="csa.db" />
+    <option name="AFTER_PATH" value="csa.db" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01_[Default_Changelist]/csa.db" />
+  </binary>
+</changelist>

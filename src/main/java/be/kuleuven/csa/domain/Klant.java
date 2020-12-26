@@ -1,9 +1,8 @@
 package be.kuleuven.csa.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Klant {
@@ -18,12 +17,19 @@ public class Klant {
     private String email;
     @Column
     private String telefoonnummer;
+    @OneToMany(mappedBy = "klant")
+    private List<Koopt> kooptList;
 
     public Klant(String naam, String adres, String email, String telefoonnummer) {
         this.naam = naam;
         this.adres = adres;
         this.email = email;
         this.telefoonnummer = telefoonnummer;
+        this.kooptList = new ArrayList<Koopt>();
+    }
+
+    public List<Koopt> getKooptList() {
+        return kooptList;
     }
 
     public int getKlantId() {

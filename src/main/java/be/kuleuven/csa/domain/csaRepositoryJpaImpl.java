@@ -143,4 +143,18 @@ public class csaRepositoryJpaImpl implements csaRepository {
         entityManager.persist(verkoopt);
         entityManager.getTransaction().commit();
     }
+    @Override
+    public void saveNewKoopt(Koopt koopt) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(koopt);
+        entityManager.getTransaction().commit();
+    }
+
+
+    @Override
+    public void saveNewPakketinhoud(PakketInhoud pakketInhoud) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(pakketInhoud);
+        entityManager.getTransaction().commit();
+    }
 }

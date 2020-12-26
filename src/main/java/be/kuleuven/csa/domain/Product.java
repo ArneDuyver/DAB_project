@@ -1,9 +1,8 @@
 package be.kuleuven.csa.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -14,10 +13,17 @@ public class Product {
     private String naam;
     @Column
     private String soort;
+    @OneToMany(mappedBy = "boerderij")
+    private List<Verkoopt> verkooptList;
 
     public Product(String naam, String soort) {
         this.naam = naam;
         this.soort = soort;
+        this.verkooptList = new ArrayList<Verkoopt>();
+    }
+
+    public List<Verkoopt> getVerkooptList() {
+        return verkooptList;
     }
 
     public void setNaam(String naam) {
