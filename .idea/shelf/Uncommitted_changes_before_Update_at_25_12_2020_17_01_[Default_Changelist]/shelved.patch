@@ -1,0 +1,372 @@
+Index: src/main/java/be/kuleuven/csa/domain/Verkoopt.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package be.kuleuven.csa.domain;\r\n\r\nimport javax.persistence.*;\r\n\r\n@Entity\r\npublic class Verkoopt {\r\n    @Id\r\n    @GeneratedValue\r\n    private int verkooptId;\r\n    @Column\r\n    private int prijs;\r\n    @Column\r\n    private String startdatum;\r\n    @ManyToOne\r\n    @JoinColumn(name = \"BoerderijId\")\r\n    private Boerderij boerderij;\r\n    @ManyToOne\r\n    @JoinColumn(name = \"pakketBeschrijvingsId\")\r\n    private Pakketbeschrijving pakketbeschrijving;\r\n\r\n    public Verkoopt(int prijs, String startdatum, Boerderij boerderij, Pakketbeschrijving pakketbeschrijving) {\r\n        this.prijs = prijs;\r\n        this.startdatum = startdatum;\r\n        this.boerderij = boerderij;\r\n        this.pakketbeschrijving = pakketbeschrijving;\r\n\r\n        boerderij.getPakketbeschrijvingen().add(this);\r\n        pakketbeschrijving.getBoerderijen().add(this);\r\n    }\r\n\r\n\r\n    public int getPrijs() {\r\n        return prijs;\r\n    }\r\n\r\n    public String getStartdatum() {\r\n        return startdatum;\r\n    }\r\n\r\n    public Boerderij getBoerderij() {\r\n        return boerderij;\r\n    }\r\n\r\n    public Pakketbeschrijving getPakketbeschrijving() {\r\n        return pakketbeschrijving;\r\n    }\r\n\r\n    public void setPrijs(int prijs) {\r\n        this.prijs = prijs;\r\n    }\r\n\r\n    public void setStartdatum(String startdatum) {\r\n        this.startdatum = startdatum;\r\n    }\r\n\r\n    public void setBoerderij(Boerderij boerderij) {\r\n        this.boerderij = boerderij;\r\n    }\r\n\r\n    public void setPakketbeschrijving(Pakketbeschrijving pakketbeschrijving) {\r\n        this.pakketbeschrijving = pakketbeschrijving;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/be/kuleuven/csa/domain/Verkoopt.java	(revision 998eef012e092e61a4bdbe96b85cbf8d22934439)
++++ src/main/java/be/kuleuven/csa/domain/Verkoopt.java	(date 1608912016506)
+@@ -11,21 +11,15 @@
+     private int prijs;
+     @Column
+     private String startdatum;
+-    @ManyToOne
+-    @JoinColumn(name = "BoerderijId")
++    @ManyToOne(fetch = FetchType.LAZY)
++    @JoinColumn(name = "boerderijId")
+     private Boerderij boerderij;
+-    @ManyToOne
+-    @JoinColumn(name = "pakketBeschrijvingsId")
+-    private Pakketbeschrijving pakketbeschrijving;
+ 
+-    public Verkoopt(int prijs, String startdatum, Boerderij boerderij, Pakketbeschrijving pakketbeschrijving) {
++    public Verkoopt(int prijs, String startdatum, Boerderij boerderij) {
+         this.prijs = prijs;
+         this.startdatum = startdatum;
++        boerderij.getVerkooptList().add(this);
+         this.boerderij = boerderij;
+-        this.pakketbeschrijving = pakketbeschrijving;
+-
+-        boerderij.getPakketbeschrijvingen().add(this);
+-        pakketbeschrijving.getBoerderijen().add(this);
+     }
+ 
+ 
+@@ -41,9 +35,6 @@
+         return boerderij;
+     }
+ 
+-    public Pakketbeschrijving getPakketbeschrijving() {
+-        return pakketbeschrijving;
+-    }
+ 
+     public void setPrijs(int prijs) {
+         this.prijs = prijs;
+@@ -57,7 +48,4 @@
+         this.boerderij = boerderij;
+     }
+ 
+-    public void setPakketbeschrijving(Pakketbeschrijving pakketbeschrijving) {
+-        this.pakketbeschrijving = pakketbeschrijving;
+-    }
+ }
+Index: src/main/java/be/kuleuven/csa/domain/Pakketbeschrijving.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package be.kuleuven.csa.domain;\r\n\r\nimport javax.persistence.*;\r\nimport java.util.HashSet;\r\nimport java.util.Set;\r\n\r\n@Entity\r\npublic class Pakketbeschrijving {\r\n    @Id\r\n    @GeneratedValue\r\n    private int pakketBeschrijvingId;\r\n\r\n    @Column\r\n    private String naam;\r\n    @Column\r\n    private String grootte;\r\n    @Column\r\n    private int volwassenen;\r\n    @Column\r\n    private int kinderen;\r\n    @OneToMany(mappedBy = \"Pakketbeschrijving\")\r\n    private Set<Verkoopt> boerderijen = new HashSet<Verkoopt>(); ;\r\n\r\n\r\n    public Pakketbeschrijving(String naam, int volwassenen, int kinderen) {\r\n        this.naam = naam;\r\n        this.volwassenen = volwassenen;\r\n        this.kinderen = kinderen;\r\n        this.grootte  = \"\"+naam+volwassenen+kinderen;\r\n    }\r\n\r\n    public void setNaam(String naam) {\r\n        this.naam = naam;\r\n        this.grootte  = \"\"+naam+volwassenen+kinderen;\r\n    }\r\n\r\n    public void setVolwassenen(int volwassenen) {\r\n        this.volwassenen = volwassenen;\r\n        this.grootte  = \"\"+naam+volwassenen+kinderen;\r\n    }\r\n\r\n    public void setKinderen(int kinderen) {\r\n        this.kinderen = kinderen;\r\n        this.grootte  = \"\"+naam+volwassenen+kinderen;\r\n\r\n    }\r\n\r\n    public int getPakketBeschrijvingId() {\r\n        return pakketBeschrijvingId;\r\n    }\r\n\r\n    public String getNaam() {\r\n        return naam;\r\n    }\r\n\r\n    public String getGrootte() {\r\n        return grootte;\r\n    }\r\n\r\n    public int getVolwassenen() {\r\n        return volwassenen;\r\n    }\r\n\r\n    public int getKinderen() {\r\n        return kinderen;\r\n    }\r\n\r\n    public Set<Verkoopt> getBoerderijen() {\r\n        return boerderijen;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Pakketbeschrijving{\" +\r\n                \"pakketBeschrijvingId=\" + pakketBeschrijvingId +\r\n                \",naam='\" + naam + '\\'' +\r\n                \", grootte='\" + grootte + '\\'' +\r\n                \", volwassenen=\" + volwassenen +\r\n                \", kinderen=\" + kinderen +\r\n                '}';\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/be/kuleuven/csa/domain/Pakketbeschrijving.java	(revision 998eef012e092e61a4bdbe96b85cbf8d22934439)
++++ src/main/java/be/kuleuven/csa/domain/Pakketbeschrijving.java	(date 1608813232031)
+@@ -1,8 +1,9 @@
+ package be.kuleuven.csa.domain;
+ 
+-import javax.persistence.*;
+-import java.util.HashSet;
+-import java.util.Set;
++import javax.persistence.Column;
++import javax.persistence.Entity;
++import javax.persistence.GeneratedValue;
++import javax.persistence.Id;
+ 
+ @Entity
+ public class Pakketbeschrijving {
+@@ -13,36 +14,29 @@
+     @Column
+     private String naam;
+     @Column
+-    private String grootte;
+-    @Column
+     private int volwassenen;
+     @Column
+     private int kinderen;
+-    @OneToMany(mappedBy = "Pakketbeschrijving")
+-    private Set<Verkoopt> boerderijen = new HashSet<Verkoopt>(); ;
++   // @OneToMany(mappedBy = "Pakketbeschrijving")
++    //private Set<Verkoopt> boerderijen = new HashSet<Verkoopt>(); ;
+ 
+ 
+     public Pakketbeschrijving(String naam, int volwassenen, int kinderen) {
+         this.naam = naam;
+         this.volwassenen = volwassenen;
+         this.kinderen = kinderen;
+-        this.grootte  = ""+naam+volwassenen+kinderen;
+     }
+ 
+     public void setNaam(String naam) {
+         this.naam = naam;
+-        this.grootte  = ""+naam+volwassenen+kinderen;
+     }
+ 
+     public void setVolwassenen(int volwassenen) {
+         this.volwassenen = volwassenen;
+-        this.grootte  = ""+naam+volwassenen+kinderen;
+     }
+ 
+     public void setKinderen(int kinderen) {
+         this.kinderen = kinderen;
+-        this.grootte  = ""+naam+volwassenen+kinderen;
+-
+     }
+ 
+     public int getPakketBeschrijvingId() {
+@@ -53,10 +47,6 @@
+         return naam;
+     }
+ 
+-    public String getGrootte() {
+-        return grootte;
+-    }
+-
+     public int getVolwassenen() {
+         return volwassenen;
+     }
+@@ -65,16 +55,15 @@
+         return kinderen;
+     }
+ 
+-    public Set<Verkoopt> getBoerderijen() {
+-        return boerderijen;
+-    }
++    //public Set<Verkoopt> getBoerderijen() {
++      //  return boerderijen;
++    //}
+ 
+     @Override
+     public String toString() {
+         return "Pakketbeschrijving{" +
+                 "pakketBeschrijvingId=" + pakketBeschrijvingId +
+                 ",naam='" + naam + '\'' +
+-                ", grootte='" + grootte + '\'' +
+                 ", volwassenen=" + volwassenen +
+                 ", kinderen=" + kinderen +
+                 '}';
+Index: src/main/java/be/kuleuven/csa/domain/Boerderij.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package be.kuleuven.csa.domain;\r\n\r\nimport javax.persistence.*;\r\nimport java.util.HashSet;\r\nimport java.util.Set;\r\n\r\n@Entity\r\npublic class Boerderij {\r\n    @Id\r\n    @GeneratedValue\r\n    private int boerderijId;\r\n\r\n    @Column\r\n    private String naam;\r\n    @Column\r\n    private String adres;\r\n    @Column\r\n    private String email;\r\n    @Column\r\n    private String rekeningnummer;\r\n    @Column\r\n    private int opbrengst;\r\n    @OneToMany(mappedBy = \"Boerderijen\")\r\n    private Set<Verkoopt> pakketbeschrijvingen = new HashSet<Verkoopt>();\r\n\r\n    public Boerderij(String naam, String adres, String email, String rekeningnummer) {\r\n        this.naam = naam;\r\n        this.adres = adres;\r\n        this.email = email;\r\n        this.rekeningnummer = rekeningnummer;\r\n    }\r\n\r\n    public int getBoerderijId() {\r\n        return boerderijId;\r\n    }\r\n\r\n    public String getNaam() {\r\n        return naam;\r\n    }\r\n\r\n    public String getAdres() {\r\n        return adres;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public String getRekeningnummer() {\r\n        return rekeningnummer;\r\n    }\r\n\r\n    public int getOpbrengst() {\r\n        return opbrengst;\r\n    }\r\n\r\n    public void setNaam(String naam) {\r\n        this.naam = naam;\r\n    }\r\n\r\n    public void setAdres(String adres) {\r\n        this.adres = adres;\r\n    }\r\n\r\n    public void setEmail(String email) {\r\n        this.email = email;\r\n    }\r\n\r\n    public void setRekeningnummer(String rekeningnummer) {\r\n        this.rekeningnummer = rekeningnummer;\r\n    }\r\n\r\n    public void setOpbrengst(int opbrengst) {\r\n        this.opbrengst = opbrengst;\r\n    }\r\n\r\n    public Set<Verkoopt> getPakketbeschrijvingen() {\r\n        return pakketbeschrijvingen;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Boerderij{\" +\r\n                \"BoerderijId=\" + boerderijId +\r\n                \",naam='\" + naam + '\\'' +\r\n                \", adres='\" + adres + '\\'' +\r\n                \", email=\" + email +\r\n                \", rekeningnummer=\" + rekeningnummer +\r\n                \", opbrengst=\" + opbrengst +\r\n                '}';\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/be/kuleuven/csa/domain/Boerderij.java	(revision 998eef012e092e61a4bdbe96b85cbf8d22934439)
++++ src/main/java/be/kuleuven/csa/domain/Boerderij.java	(date 1608912056573)
+@@ -1,8 +1,7 @@
+ package be.kuleuven.csa.domain;
+ 
+ import javax.persistence.*;
+-import java.util.HashSet;
+-import java.util.Set;
++import java.util.List;
+ 
+ @Entity
+ public class Boerderij {
+@@ -20,8 +19,8 @@
+     private String rekeningnummer;
+     @Column
+     private int opbrengst;
+-    @OneToMany(mappedBy = "Boerderijen")
+-    private Set<Verkoopt> pakketbeschrijvingen = new HashSet<Verkoopt>();
++    @OneToMany(mappedBy = "boerderij")
++    private List<Verkoopt> verkooptList;
+ 
+     public Boerderij(String naam, String adres, String email, String rekeningnummer) {
+         this.naam = naam;
+@@ -30,6 +29,10 @@
+         this.rekeningnummer = rekeningnummer;
+     }
+ 
++    public List<Verkoopt> getVerkooptList() {
++        return verkooptList;
++    }
++
+     public int getBoerderijId() {
+         return boerderijId;
+     }
+@@ -74,9 +77,9 @@
+         this.opbrengst = opbrengst;
+     }
+ 
+-    public Set<Verkoopt> getPakketbeschrijvingen() {
+-        return pakketbeschrijvingen;
+-    }
++   // public Set<Verkoopt> getPakketbeschrijvingen() {
++     //   return pakketbeschrijvingen;
++    //}
+ 
+     @Override
+     public String toString() {
+Index: src/main/java/be/kuleuven/csa/domain/dbTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package be.kuleuven.csa.domain;\r\n\r\nimport javax.persistence.Persistence;\r\n\r\npublic class dbTest {\r\n        public static void main(String[] args) {\r\n            System.out.println(\"Bootstrapping JPA/Hibernate...\");\r\n            var sessionFactory = Persistence.createEntityManagerFactory(\"be.kuleuven.csa.domain\");\r\n            var entityManager = sessionFactory.createEntityManager();\r\n\r\n            System.out.println(\"Bootstrapping Repository...\");\r\n            var repo = new csaRepositoryJpaImpl(entityManager);\r\n\r\n            System.out.println(\"Persisting nieuwehuis,appel, Kamiel...\");\r\n            var nieuwhuis = new Boerderij(\"nieuwhuis\", \"Boshoeve 11\", \"kamiel.allard@hotmail.com\",\"BE45 4555 4555 4555\");\r\n            var appel = new Product(\"appel\", \"fruit\");\r\n            var Kamiel = new Klant(\"Allard Kamiel\",\"Boshoeve 11\", \"kamiel.allard@hotmail.com\", \"0497688279\");\r\n            var medium = new Pakketbeschrijving(\"medium\",2,1);\r\n            var verkoopt = new Verkoopt(200,\"2020-12-24\",nieuwhuis,medium);\r\n            var verkoopt2 = new Verkoopt(300, \"2020-12-24\",nieuwhuis,medium);\r\n            repo.saveNewBoerderij(nieuwhuis);\r\n            repo.saveNewProduct(appel);\r\n            repo.saveNewKlant(Kamiel);\r\n            repo.saveNewPakketbeschrijving(medium);\r\n            repo.saveNewVerkoopt(verkoopt);\r\n            nieuwhuis.setAdres(\"Boshoeve 12\");\r\n            appel.setNaam(\"jonagold\");\r\n            Kamiel.setEmail(\"kamiel.allard@student.uhasselt.com\");\r\n            repo.updateBoerderij(nieuwhuis);\r\n            repo.updateProduct(appel);\r\n            repo.updateKlant(Kamiel);\r\n            var testdelete =new Boerderij(\"nieuwhuis\", \"Boshoeve 11\", \"kamiel.allard@hotmail.com\",\"BE45 4555 4555 4555\");\r\n            //repo.deleteBoerderij(testdelete);// werkt niet want id gaat omhoog\r\n            //repo.deleteBoerderij(nieuwhuis);// werkt wel\r\n\r\n            isBoerderijEr(repo);\r\n            isKlantEr(repo);\r\n            isProductEr(repo);\r\n\r\n\r\n\r\n        }\r\n\r\n        private static void isBoerderijEr(csaRepositoryJpaImpl repo) {\r\n            System.out.println(\"Is Boerderij er?\");\r\n            for(var eenStudent : repo.getBoerderijByName(\"nieuwhuis\")) {\r\n                System.out.println(eenStudent);\r\n            }\r\n        }\r\n        private static void isProductEr(csaRepositoryJpaImpl repo) {\r\n            System.out.println(\"Is Product er?\");\r\n            for(var eenStudent : repo.getProductByName(\"jonagold\")) {\r\n                System.out.println(eenStudent);\r\n            }\r\n        }\r\n        private static void isKlantEr(csaRepositoryJpaImpl repo) {\r\n            System.out.println(\"Is Klant er?\");\r\n            for(var eenStudent : repo.getKlantByName(\"Allard Kamiel\")) {\r\n                System.out.println(eenStudent);\r\n            }\r\n        }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/be/kuleuven/csa/domain/dbTest.java	(revision 998eef012e092e61a4bdbe96b85cbf8d22934439)
++++ src/main/java/be/kuleuven/csa/domain/dbTest.java	(date 1608813772688)
+@@ -16,13 +16,13 @@
+             var appel = new Product("appel", "fruit");
+             var Kamiel = new Klant("Allard Kamiel","Boshoeve 11", "kamiel.allard@hotmail.com", "0497688279");
+             var medium = new Pakketbeschrijving("medium",2,1);
+-            var verkoopt = new Verkoopt(200,"2020-12-24",nieuwhuis,medium);
+-            var verkoopt2 = new Verkoopt(300, "2020-12-24",nieuwhuis,medium);
++            //var verkoopt = new Verkoopt(200,"2020-12-24",nieuwhuis,medium);
++            //var verkoopt2 = new Verkoopt(300, "2020-12-24",nieuwhuis,medium);
+             repo.saveNewBoerderij(nieuwhuis);
+             repo.saveNewProduct(appel);
+             repo.saveNewKlant(Kamiel);
+             repo.saveNewPakketbeschrijving(medium);
+-            repo.saveNewVerkoopt(verkoopt);
++            //repo.saveNewVerkoopt(verkoopt);
+             nieuwhuis.setAdres("Boshoeve 12");
+             appel.setNaam("jonagold");
+             Kamiel.setEmail("kamiel.allard@student.uhasselt.com");
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f8bf6453-5801-4780-9db1-3db587b557d8\" name=\"Default Changelist\" comment=\"added boerderij, pakketbeschrijving, klant, product, persistence.xml\">\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/6.3/javaCompile/taskHistory.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/6.3/javaCompile/taskHistory.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Boerderij.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Boerderij.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Pakketbeschrijving.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Pakketbeschrijving.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Product.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Product.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"DefaultGradleProjectSettings\">\r\n    <option name=\"testRunner\" value=\"GRADLE\" />\r\n    <option name=\"delegatedBuild\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"project-template\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"project-template\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1jrbvSullSfxjO2m514be244wOP\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/src/main/resources/META-INF\" />\r\n    <property name=\"nodejs_interpreter_path.stuck_in_default_project\" value=\"undefined stuck path\" />\r\n    <property name=\"nodejs_npm_path_reset_for_default_project\" value=\"true\" />\r\n    <property name=\"project.structure.last.edited\" value=\"SDKs\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.settingsdialog.project.gradle\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"be.kuleuven.csa.domain\" />\r\n      <recent name=\"be.kuleuven.csa.controller\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\kamie\\OneDrive - Universiteit Hasselt\\3 ba IIW\\databases\\taak\\javaGitProject\\DAB_project\\src\\main\\resources\\META-INF\" />\r\n      <recent name=\"$PROJECT_DIR$/src/main/resources\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunAnythingCache\">\r\n    <option name=\"myCommands\">\r\n      <command value=\"gradle run\" />\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.dbTest\">\r\n    <configuration name=\"ProjectMain\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"be.kuleuven.csa.ProjectMain\" />\r\n      <module name=\"project-template.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"be.kuleuven.csa.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"dbTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"be.kuleuven.csa.domain.dbTest\" />\r\n      <module name=\"project-template.main\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"be.kuleuven.csa.domain.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"project-template [run]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"run\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" value=\"\" />\r\n      </ExternalSystemSettings>\r\n      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.dbTest\" />\r\n        <item itemvalue=\"Gradle.project-template [run]\" />\r\n        <item itemvalue=\"Application.ProjectMain\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f8bf6453-5801-4780-9db1-3db587b557d8\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1604565387773</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1604565387773</updated>\r\n      <workItem from=\"1604565390257\" duration=\"6279000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"added readme file\">\r\n      <created>1608721363245</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1608721363245</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added boerderij, pakketbeschrijving, klant, product, persistence.xml\">\r\n      <created>1608728814796</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1608728814796</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"added boerderij, pakketbeschrijving, klant, product, persistence.xml\">\r\n      <created>1608728824878</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1608728824878</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"1\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"added readme file\" />\r\n    <MESSAGE value=\"added boerderij, pakketbeschrijving, klant, product, persistence.xml\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"added boerderij, pakketbeschrijving, klant, product, persistence.xml\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"2729\" y=\"266\" key=\"#com.intellij.fileTypes.FileTypeChooser\" timestamp=\"1608742233626\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"2729\" y=\"266\" key=\"#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608742233626\" />\r\n    <state x=\"2047\" y=\"359\" key=\"#com.intellij.fileTypes.FileTypeChooser/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604571080590\" />\r\n    <state x=\"3005\" y=\"235\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1608804963719\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"3005\" y=\"235\" key=\"#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608804963719\" />\r\n    <state x=\"3005\" y=\"416\" key=\"#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400\" timestamp=\"1608729735035\" />\r\n    <state x=\"2930\" y=\"266\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog\" timestamp=\"1608804491840\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"2930\" y=\"266\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608804491840\" />\r\n    <state x=\"2273\" y=\"263\" width=\"729\" height=\"573\" key=\"#xdebugger.evaluate\" timestamp=\"1604572497531\">\r\n      <screen x=\"1440\" y=\"23\" width=\"1920\" height=\"1053\" />\r\n    </state>\r\n    <state x=\"2273\" y=\"263\" width=\"729\" height=\"573\" key=\"#xdebugger.evaluate/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604572497531\" />\r\n    <state x=\"2980\" y=\"455\" key=\"FileChooserDialogImpl\" timestamp=\"1608726969371\">\r\n      <screen x=\"1920\" y=\"0\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"2980\" y=\"455\" key=\"FileChooserDialogImpl/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400\" timestamp=\"1608726969371\" />\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1608805326250\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608805326250\" />\r\n    <state width=\"2517\" height=\"401\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400\" timestamp=\"1608729877103\" />\r\n    <state width=\"1877\" height=\"401\" key=\"GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1608746602218\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.0.bottom/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785520\" />\r\n    <state width=\"1878\" height=\"288\" key=\"GridCell.Tab.0.bottom/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057\" timestamp=\"1604567232654\" />\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.center\" timestamp=\"1608805326250\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.center/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608805326250\" />\r\n    <state width=\"2517\" height=\"401\" key=\"GridCell.Tab.0.center/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400\" timestamp=\"1608729877103\" />\r\n    <state width=\"1877\" height=\"401\" key=\"GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1608746602218\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.0.center/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785518\" />\r\n    <state width=\"1878\" height=\"288\" key=\"GridCell.Tab.0.center/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057\" timestamp=\"1604567232653\" />\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.left\" timestamp=\"1608805326250\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.left/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608805326250\" />\r\n    <state width=\"2517\" height=\"401\" key=\"GridCell.Tab.0.left/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400\" timestamp=\"1608729877103\" />\r\n    <state width=\"1877\" height=\"401\" key=\"GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1608746602218\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.0.left/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785517\" />\r\n    <state width=\"1878\" height=\"288\" key=\"GridCell.Tab.0.left/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057\" timestamp=\"1604567232653\" />\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.right\" timestamp=\"1608805326250\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"565\" key=\"GridCell.Tab.0.right/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608805326250\" />\r\n    <state width=\"2517\" height=\"401\" key=\"GridCell.Tab.0.right/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400\" timestamp=\"1608729877103\" />\r\n    <state width=\"1877\" height=\"401\" key=\"GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040\" timestamp=\"1608746602218\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.0.right/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785519\" />\r\n    <state width=\"1878\" height=\"288\" key=\"GridCell.Tab.0.right/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057\" timestamp=\"1604567232654\" />\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1608803242054\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.bottom/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608803242054\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.1.bottom/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785522\" />\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.center\" timestamp=\"1608803242054\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.center/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608803242054\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.1.center/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785521\" />\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.left\" timestamp=\"1608803242054\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.left/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608803242054\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.1.left/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785520\" />\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.right\" timestamp=\"1608803242054\">\r\n      <screen x=\"1920\" y=\"-181\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state width=\"2517\" height=\"492\" key=\"GridCell.Tab.1.right/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400\" timestamp=\"1608803242054\" />\r\n    <state width=\"1878\" height=\"356\" key=\"GridCell.Tab.1.right/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053\" timestamp=\"1604573785522\" />\r\n    <state x=\"1909\" y=\"188\" key=\"SettingsEditor\" timestamp=\"1604566801549\">\r\n      <screen x=\"1440\" y=\"23\" width=\"1920\" height=\"1057\" />\r\n    </state>\r\n    <state x=\"1909\" y=\"188\" key=\"SettingsEditor/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057\" timestamp=\"1604566801549\" />\r\n    <state x=\"2792\" y=\"433\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1608728833865\">\r\n      <screen x=\"1920\" y=\"0\" width=\"2560\" height=\"1400\" />\r\n    </state>\r\n    <state x=\"2792\" y=\"433\" key=\"Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400\" timestamp=\"1608728833865\" />\r\n    <state x=\"2065\" y=\"255\" width=\"670\" height=\"675\" key=\"run.anything.popup\" timestamp=\"1604567069727\">\r\n      <screen x=\"1440\" y=\"23\" width=\"1920\" height=\"1057\" />\r\n    </state>\r\n    <state x=\"2065\" y=\"255\" width=\"670\" height=\"675\" key=\"run.anything.popup/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057\" timestamp=\"1604567069727\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 998eef012e092e61a4bdbe96b85cbf8d22934439)
++++ .idea/workspace.xml	(date 1608912016629)
+@@ -22,22 +22,23 @@
+     <select />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="f8bf6453-5801-4780-9db1-3db587b557d8" name="Default Changelist" comment="added boerderij, pakketbeschrijving, klant, product, persistence.xml">
++    <list default="true" id="f8bf6453-5801-4780-9db1-3db587b557d8" name="Default Changelist" comment="dbTest file toegevoegd, de verkoopt klasse wekt nog niet weet niet wat ik precies fout doe...">
+       <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/javaCompile/taskHistory.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Boerderij.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Boerderij.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Pakketbeschrijving.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Pakketbeschrijving.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/dbTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/dbTest.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/csa.db" beforeDir="false" afterPath="$PROJECT_DIR$/csa.db" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Boerderij.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Boerderij.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Pakketbeschrijving.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Pakketbeschrijving.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Product.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Verkoopt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Verkoopt.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/dbTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/dbTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -216,7 +217,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1608728824878</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="dbTest file toegevoegd, de verkoopt klasse wekt nog niet weet niet wat ik precies fout doe...">
++      <created>1608805739228</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1608805739228</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -237,7 +245,8 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="added readme file" />
+     <MESSAGE value="added boerderij, pakketbeschrijving, klant, product, persistence.xml" />
+-    <option name="LAST_COMMIT_MESSAGE" value="added boerderij, pakketbeschrijving, klant, product, persistence.xml" />
++    <MESSAGE value="dbTest file toegevoegd, de verkoopt klasse wekt nog niet weet niet wat ik precies fout doe..." />
++    <option name="LAST_COMMIT_MESSAGE" value="dbTest file toegevoegd, de verkoopt klasse wekt nog niet weet niet wat ik precies fout doe..." />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="2729" y="266" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608742233626">
+@@ -245,11 +254,12 @@
+     </state>
+     <state x="2729" y="266" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608742233626" />
+     <state x="2047" y="359" key="#com.intellij.fileTypes.FileTypeChooser/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604571080590" />
+-    <state x="3005" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1608804963719">
+-      <screen x="1920" y="-181" width="2560" height="1400" />
++    <state x="814" y="309" key="#com.intellij.ide.util.MemberChooser" timestamp="1608911886470">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state x="3005" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608804963719" />
++    <state x="3005" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608805588204" />
+     <state x="3005" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729735035" />
++    <state x="814" y="309" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608911886470" />
+     <state x="2930" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608804491840">
+       <screen x="1920" y="-181" width="2560" height="1400" />
+     </state>
+@@ -262,36 +272,36 @@
+       <screen x="1920" y="0" width="2560" height="1400" />
+     </state>
+     <state x="2980" y="455" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608726969371" />
+-    <state width="2517" height="565" key="GridCell.Tab.0.bottom" timestamp="1608805326250">
+-      <screen x="1920" y="-181" width="2560" height="1400" />
++    <state width="1877" height="443" key="GridCell.Tab.0.bottom" timestamp="1608911957362">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="2517" height="565" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608805326250" />
++    <state width="2517" height="443" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608813238360" />
+     <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+-    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608746602218" />
++    <state width="1877" height="443" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608911957362" />
+     <state width="1878" height="356" key="GridCell.Tab.0.bottom/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785520" />
+     <state width="1878" height="288" key="GridCell.Tab.0.bottom/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232654" />
+-    <state width="2517" height="565" key="GridCell.Tab.0.center" timestamp="1608805326250">
+-      <screen x="1920" y="-181" width="2560" height="1400" />
++    <state width="1877" height="443" key="GridCell.Tab.0.center" timestamp="1608911957362">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="2517" height="565" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608805326250" />
++    <state width="2517" height="443" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608813238360" />
+     <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+-    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608746602218" />
++    <state width="1877" height="443" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608911957362" />
+     <state width="1878" height="356" key="GridCell.Tab.0.center/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785518" />
+     <state width="1878" height="288" key="GridCell.Tab.0.center/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232653" />
+-    <state width="2517" height="565" key="GridCell.Tab.0.left" timestamp="1608805326250">
+-      <screen x="1920" y="-181" width="2560" height="1400" />
++    <state width="1877" height="443" key="GridCell.Tab.0.left" timestamp="1608911957362">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="2517" height="565" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608805326250" />
++    <state width="2517" height="443" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608813238360" />
+     <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+-    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608746602218" />
++    <state width="1877" height="443" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608911957362" />
+     <state width="1878" height="356" key="GridCell.Tab.0.left/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785517" />
+     <state width="1878" height="288" key="GridCell.Tab.0.left/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232653" />
+-    <state width="2517" height="565" key="GridCell.Tab.0.right" timestamp="1608805326250">
+-      <screen x="1920" y="-181" width="2560" height="1400" />
++    <state width="1877" height="443" key="GridCell.Tab.0.right" timestamp="1608911957362">
++      <screen x="0" y="0" width="1920" height="1040" />
+     </state>
+-    <state width="2517" height="565" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608805326250" />
++    <state width="2517" height="443" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608813238360" />
+     <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+-    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608746602218" />
++    <state width="1877" height="443" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608911957362" />
+     <state width="1878" height="356" key="GridCell.Tab.0.right/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785519" />
+     <state width="1878" height="288" key="GridCell.Tab.0.right/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232654" />
+     <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1608803242054">
+@@ -318,9 +328,10 @@
+       <screen x="1440" y="23" width="1920" height="1057" />
+     </state>
+     <state x="1909" y="188" key="SettingsEditor/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604566801549" />
+-    <state x="2792" y="433" key="Vcs.Push.Dialog.v2" timestamp="1608728833865">
+-      <screen x="1920" y="0" width="2560" height="1400" />
++    <state x="2792" y="252" key="Vcs.Push.Dialog.v2" timestamp="1608805759291">
++      <screen x="1920" y="-181" width="2560" height="1400" />
+     </state>
++    <state x="2792" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608805759291" />
+     <state x="2792" y="433" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608728833865" />
+     <state x="2065" y="255" width="670" height="675" key="run.anything.popup" timestamp="1604567069727">
+       <screen x="1440" y="23" width="1920" height="1057" />

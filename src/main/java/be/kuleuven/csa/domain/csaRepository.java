@@ -21,6 +21,9 @@ public interface csaRepository {
     void updatePakketbeschrijving(Pakketbeschrijving pakketbeschrijving);
     void deletePakketbeschrijving(Pakketbeschrijving pakketbeschrijving);
     void saveNewVerkoopt(Verkoopt verkoopt);
+    void saveNewKoopt(Koopt koopt);
+    void saveNewPakketinhoud(PakketInhoud pakketInhoud);
+
 
 
 

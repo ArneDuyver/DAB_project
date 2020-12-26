@@ -17,18 +17,23 @@ public class dbTest {
             var Kamiel = new Klant("Allard Kamiel","Boshoeve 11", "kamiel.allard@hotmail.com", "0497688279");
             var medium = new Pakketbeschrijving("medium",2,1);
             var verkoopt = new Verkoopt(200,"2020-12-24",nieuwhuis,medium);
-            var verkoopt2 = new Verkoopt(300, "2020-12-24",nieuwhuis,medium);
+            var contract = new Koopt(verkoopt,Kamiel);
+            var pakketinhoud = new PakketInhoud("tutifruti");
+            //var verkoopt2 = new Verkoopt(300, "2020-12-24",nieuwhuis,medium);
             repo.saveNewBoerderij(nieuwhuis);
             repo.saveNewProduct(appel);
             repo.saveNewKlant(Kamiel);
             repo.saveNewPakketbeschrijving(medium);
             repo.saveNewVerkoopt(verkoopt);
+            repo.saveNewKoopt(contract);
+            repo.saveNewPakketinhoud(pakketinhoud);
             nieuwhuis.setAdres("Boshoeve 12");
             appel.setNaam("jonagold");
             Kamiel.setEmail("kamiel.allard@student.uhasselt.com");
             repo.updateBoerderij(nieuwhuis);
             repo.updateProduct(appel);
             repo.updateKlant(Kamiel);
+
             var testdelete =new Boerderij("nieuwhuis", "Boshoeve 11", "kamiel.allard@hotmail.com","BE45 4555 4555 4555");
             //repo.deleteBoerderij(testdelete);// werkt niet want id gaat omhoog
             //repo.deleteBoerderij(nieuwhuis);// werkt wel

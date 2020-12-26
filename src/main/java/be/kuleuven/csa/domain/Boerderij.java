@@ -1,8 +1,8 @@
 package be.kuleuven.csa.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Boerderij {
@@ -20,14 +20,19 @@ public class Boerderij {
     private String rekeningnummer;
     @Column
     private int opbrengst;
-    @OneToMany(mappedBy = "Boerderijen")
-    private Set<Verkoopt> pakketbeschrijvingen = new HashSet<Verkoopt>();
+    @OneToMany(mappedBy = "boerderij")
+    private List<Verkoopt> verkooptList;
 
     public Boerderij(String naam, String adres, String email, String rekeningnummer) {
         this.naam = naam;
         this.adres = adres;
         this.email = email;
         this.rekeningnummer = rekeningnummer;
+        this.verkooptList = new ArrayList<Verkoopt>();
+    }
+
+    public List<Verkoopt> getVerkooptList() {
+        return verkooptList;
     }
 
     public int getBoerderijId() {
@@ -74,9 +79,9 @@ public class Boerderij {
         this.opbrengst = opbrengst;
     }
 
-    public Set<Verkoopt> getPakketbeschrijvingen() {
-        return pakketbeschrijvingen;
-    }
+   // public Set<Verkoopt> getPakketbeschrijvingen() {
+     //   return pakketbeschrijvingen;
+    //}
 
     @Override
     public String toString() {
