@@ -31,6 +31,9 @@ public class Klant {
         this.haaltAfList = new ArrayList<>();
     }
 
+    public Klant() {
+    }
+
     public List<HaaltAf> getHaaltAfList() {
         return haaltAfList;
     }

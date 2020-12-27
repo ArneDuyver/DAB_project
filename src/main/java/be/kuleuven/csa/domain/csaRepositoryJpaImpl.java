@@ -23,6 +23,15 @@ public class csaRepositoryJpaImpl implements csaRepository {
     }
 
     @Override
+    public List<Boerderij> getBoerderij() {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Boerderij.class);
+        var root = query.from(Boerderij.class);
+        var all = query.select(root);
+        return entityManager.createQuery(all).getResultList();
+    }
+
+    @Override
     public void saveNewBoerderij(Boerderij boerderij) {
         entityManager.getTransaction().begin();
         entityManager.persist(boerderij);
@@ -55,6 +64,15 @@ public class csaRepositoryJpaImpl implements csaRepository {
     }
 
     @Override
+    public List<Product> getProduct() {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Product.class);
+        var root = query.from(Product.class);
+        var all = query.select(root);
+        return entityManager.createQuery(all).getResultList();
+    }
+
+    @Override
     public void saveNewProduct(Product product) {
         entityManager.getTransaction().begin();
         entityManager.persist(product);
@@ -82,6 +100,15 @@ public class csaRepositoryJpaImpl implements csaRepository {
         var root = query.from(Klant.class);
         query.where(criteriabuilder.equal(root.get("naam"), klant));
         return entityManager.createQuery(query).getResultList() ;
+    }
+
+    @Override
+    public List<Klant> getKlant() {
+        var criteriaBuilder = entityManager.getCriteriaBuilder();
+        var query = criteriaBuilder.createQuery(Klant.class);
+        var root = query.from(Klant.class);
+        var all = query.select(root);
+        return entityManager.createQuery(all).getResultList();
     }
 
     @Override
