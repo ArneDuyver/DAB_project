@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Model {
-    public static final String TAG = "Model";
+    public static final String TAG = "Model: ";
     public static final String DBNAME = "csa.db";
     //Data members
     private EntityManagerFactory sessionFactory;
@@ -18,8 +18,9 @@ public class Model {
     private csaRepository repo;
 
     public static void main(String[] args) {
-//        Model model = new Model();
-//        model.initialiseStartingDatabaseJPA();
+        Model model = new Model();
+        model.initialiseStartingDatabaseJPA();
+        initialiseStartingDatabaseSQL("csaSqlTest");
     }
 
     public Model(){
@@ -231,6 +232,42 @@ public class Model {
         repo.saveObjectToDb(haaltAf_10);
         //</editor-fold>
     }
+
+    public static void resetAutoIncrementValue() {
+        try {
+            final String ConnectionString = "jdbc:sqlite:"+DBNAME;
+            //Establish connection with the database
+            Connection connection;
+            try {
+                connection = DriverManager.getConnection(ConnectionString);
+                connection.setAutoCommit(false);
+
+            } catch (Exception e) {
+                System.out.println(TAG+"resetAutoIncrementValue: Db connection handle failure");
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+
+            //reset hibernate_sequence -> next_val
+            var sql = "UPDATE hibernate_sequence SET next_val= 1;";
+            //System.out.println(sql);
+            var s = connection.createStatement();
+            s.executeUpdate(sql);
+            s.close();
+
+            //verify next_val contents
+            var s2 = connection.createStatement();
+            var result = s2.executeQuery("SELECT next_val FROM hibernate_sequence");
+            assert result.getInt("next_val") == 1;
+            connection.close();
+
+        } catch (Exception e) {
+            System.out.println(TAG+"resetAutoIncrementValue: Error while initialising db or verifying table content");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void initialiseStartingDatabaseSQL(String dbName) {
         try {
             final String ConnectionString = "jdbc:sqlite:"+dbName+".db";
@@ -241,7 +278,7 @@ public class Model {
                 connection.setAutoCommit(false);
 
             } catch (Exception e) {
-                System.out.println("Db connection handle failure");
+                System.out.println(TAG+"initialiseStartingDatabaseSQL: Db connection handle failure");
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
@@ -257,11 +294,10 @@ public class Model {
             var s2 = connection.createStatement();
             var result = s2.executeQuery("SELECT COUNT(*) as cnt FROM boerderij");
             assert result.getInt("cnt") == 4;
-            //FIXME:
             connection.close();
 
         } catch (Exception e) {
-            System.out.println("Error while initialising db or verifying table content");
+            System.out.println(TAG+"initialiseStartingDatabaseSQL: Error while initialising db or verifying table content");
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -289,5 +325,29 @@ public class Model {
                 object instanceof PakketInhoud ||
                 object instanceof Product ||
                 object instanceof Verkoopt);
+    }
+
+    public EntityManagerFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(EntityManagerFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public csaRepository getRepo() {
+        return repo;
+    }
+
+    public void setRepo(csaRepository repo) {
+        this.repo = repo;
     }
 }
