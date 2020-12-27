@@ -22,7 +22,7 @@ public class dbTest {
             var behoortTot = new BehoortTot(1,verkoopt,pakketinhoud);
             var bevat1  =new Bevat("aantal",3,pakketinhoud,appel);
             var haaltaf = new HaaltAf(behoortTot,Kamiel);
-            //var verkoopt2 = new Verkoopt(300, "2020-12-24",nieuwhuis,medium);
+            //var verkoopt2 = new Verkoopt(300, "2020-12-24",nieuwhuis,medium);git
             repo.saveNewBoerderij(nieuwhuis);
             repo.saveNewProduct(appel);
             repo.saveNewKlant(Kamiel);

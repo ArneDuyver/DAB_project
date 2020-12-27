@@ -4,6 +4,10 @@ import java.util.List;
 
 public interface csaRepository {
 
+    void saveObjectToDb(Object object);
+    void updateObjectFromDb(Object object);
+    void deleteObjectFromDb(Object object);
+
     List<Boerderij> getBoerderijByName(String boerderij);
     void saveNewBoerderij(Boerderij boerderij);
     void updateBoerderij(Boerderij boerderij);

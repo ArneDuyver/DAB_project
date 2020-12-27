@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 public class csaRepositoryJpaImpl implements csaRepository {
-
+    public static final String TAG = "csaRepository";
     private final EntityManager entityManager;
 
     public csaRepositoryJpaImpl(EntityManager entityManager) {
@@ -261,15 +261,35 @@ public class csaRepositoryJpaImpl implements csaRepository {
         entityManager.remove(haaltAf);
         entityManager.getTransaction().commit();
     }
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void deleteObjectFromDb(Object object){
+        if (Model.isPersistableObject(object)) {
+            entityManager.getTransaction().begin();
+            entityManager.remove(object);
+            entityManager.getTransaction().commit();
+        } else {
+            throw new RuntimeException(TAG +": Trying to remove wrong object to JPA");
+        }
+    }
+    @Override
+    public void saveObjectToDb(Object object){
+        if (Model.isPersistableObject(object)) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(object);
+            entityManager.getTransaction().commit();
+        } else {
+            throw new RuntimeException(TAG +": Trying to save wrong object to JPA");
+        }
+    }
+    @Override
+    public void updateObjectFromDb(Object object){
+        if (Model.isPersistableObject(object)) {
+            entityManager.getTransaction().begin();
+            entityManager.merge(object);
+            entityManager.getTransaction().commit();
+        } else {
+            throw new RuntimeException(TAG +": Trying to update wrong object to JPA");
+        }
+    }
 
 }
