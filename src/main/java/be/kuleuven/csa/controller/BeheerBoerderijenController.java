@@ -1,13 +1,27 @@
 package be.kuleuven.csa.controller;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
+import be.kuleuven.csa.ProjectMain;
+import be.kuleuven.csa.domain.Boerderij;
+import be.kuleuven.csa.domain.csaRepositoryJpaImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-import java.util.ArrayList;
+import javax.persistence.Persistence;
+import java.util.Iterator;
+import java.util.List;
 
 public class BeheerBoerderijenController {
 
@@ -20,10 +34,35 @@ public class BeheerBoerderijenController {
     @FXML
     private Button btnClose;
     @FXML
-    private TableView tblBoerderijen;
+    private TableView<Boerderij> tblBoerderijen;
+    @FXML
+    private TableColumn<Boerderij, Integer>boerderijId;
+    @FXML
+    private TableColumn<Boerderij,String>Naam;
+    @FXML
+    private TableColumn<Boerderij,String>Adres;
+    @FXML
+    private TableColumn<Boerderij,String>Email;
+    @FXML
+    private TableColumn<Boerderij,String>Rekeningnummer;
+    @FXML
+    private TableColumn<Boerderij,Integer>Opbrengst;
+
+    public ObservableList<Boerderij> data;
+    private csaRepositoryJpaImpl repo;
 
     public void initialize() {
-        initTable();
+        var sessionFactory = Persistence.createEntityManagerFactory("be.kuleuven.csa.domain");
+        var entityManager = sessionFactory.createEntityManager();
+        this.repo = new csaRepositoryJpaImpl(entityManager);
+        boerderijId.setCellValueFactory(new PropertyValueFactory<Boerderij, Integer>("boerderijId"));
+        Naam.setCellValueFactory(new PropertyValueFactory<Boerderij, String>("Naam"));
+        Adres.setCellValueFactory(new PropertyValueFactory<Boerderij, String>("Adres"));
+        Email.setCellValueFactory(new PropertyValueFactory<Boerderij, String>("Email"));
+        Rekeningnummer.setCellValueFactory(new PropertyValueFactory<Boerderij, String>("Rekeningnummer"));
+        Opbrengst.setCellValueFactory(new PropertyValueFactory<Boerderij, Integer>("Opbrengst"));
+        tblBoerderijen.getItems().setAll(initTable());
+
         btnAdd.setOnAction(e -> addNewRow());
         btnModify.setOnAction(e -> {
             verifyOneRowSelected();
@@ -40,32 +79,66 @@ public class BeheerBoerderijenController {
         });
     }
 
-    private void initTable() {
-        tblBoerderijen.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        tblBoerderijen.getColumns().clear();
-
-        // TODO verwijderen en "echte data" toevoegen!
-        int colIndex = 0;
-        for(var colName : new String[]{"Naam", "Voornaam", "Oppervlakte", "Aantal varkens"}) {
-            TableColumn<ObservableList<String>, String> col = new TableColumn<>(colName);
-            final int finalColIndex = colIndex;
-            col.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().get(finalColIndex)));
-            tblBoerderijen.getColumns().add(col);
-            colIndex++;
+    private List<Boerderij> initTable() {
+        data = FXCollections.observableArrayList();
+        Iterator ite = repo.getBoerderij().listIterator();
+        while (ite.hasNext()){
+            Boerderij boerderij = (Boerderij) ite.next();
+            data.add(boerderij);
         }
-
-        for(int i = 0; i < 10; i++) {
-            tblBoerderijen.getItems().add(FXCollections.observableArrayList("Boer " + i, "Jozef V" + i, i*10 + "", i * 33 + ""));
-        }
+        return data;
     }
 
     private void addNewRow() {
+        try {
+            var stage = new Stage();
+            var root = (AnchorPane) FXMLLoader.load(getClass().getClassLoader().getResource("BeheerBoerderijenVoegToe.fxml"));
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Beheer van BoerderijVoegToe");
+            stage.initOwner(ProjectMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    tblBoerderijen.getItems().setAll(initTable());
+                }
+            });
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm niet vinden", e);
+        }
     }
 
     private void deleteCurrentRow() {
+        Boerderij boerderij = tblBoerderijen.getSelectionModel().getSelectedItem();
+        repo.deleteBoerderij(boerderij);
+        tblBoerderijen.getItems().setAll(initTable());
     }
 
     private void modifyCurrentRow() {
+        try {
+            Boerderij boerderij = tblBoerderijen.getSelectionModel().getSelectedItem();
+
+            var root = new FXMLLoader(getClass().getClassLoader().getResource("beheerBoerderijenModify.fxml"));
+            var stage = new Stage();
+            var scene = new Scene(root.load());
+            stage.setScene(scene);
+            stage.setTitle("Beheer van BoerderijModify");
+            stage.initOwner(ProjectMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            BeheerBoerderijenModifyController bm = root.getController();
+            bm.initData(boerderij);
+            stage.show();
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    tblBoerderijen.getItems().setAll(initTable());
+                }
+            });
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm niet vinden", e);
+        }
     }
 
     public void showAlert(String title, String content) {
@@ -78,7 +151,7 @@ public class BeheerBoerderijenController {
 
     private void verifyOneRowSelected() {
         if(tblBoerderijen.getSelectionModel().getSelectedCells().size() == 0) {
-            showAlert("Hela!", "Eerst een boer selecteren hé.");
+            showAlert("Selecteer!", "Eerst een boer selecteren.");
         }
     }
 }

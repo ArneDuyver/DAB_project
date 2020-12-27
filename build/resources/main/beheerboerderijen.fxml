@@ -12,8 +12,12 @@
    <children>
       <TableView fx:id="tblBoerderijen" layoutX="14.0" layoutY="47.0" prefHeight="246.0" prefWidth="567.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="75.0" text="Id" fx:id="boerderijId" />
+          <TableColumn prefWidth="75.0" text="Naam" fx:id="Naam"/>
+          <TableColumn prefWidth="75.0" text="Email" fx:id="Email" />
+          <TableColumn prefWidth="75.0" text="Adres" fx:id="Adres"/>
+          <TableColumn prefWidth="75.0" text="Rekeningnummer" fx:id="Rekeningnummer" />
+          <TableColumn prefWidth="75.0" text="Opbrengst" fx:id="Opbrengst" />
         </columns>
       </TableView>
       <Text layoutX="16.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beheer boerderijen" wrappingWidth="567.21875">

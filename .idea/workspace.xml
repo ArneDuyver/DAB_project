@@ -22,14 +22,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8bf6453-5801-4780-9db1-3db587b557d8" name="Default Changelist" comment="boerderij, verkoopt,koopt,klant, Pakketbeschrijving, product zijn klaar in db.">
+    <list default="true" id="f8bf6453-5801-4780-9db1-3db587b557d8" name="Default Changelist" comment="database af.">
       <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_12_2020_17_01__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -37,6 +39,32 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepositoryJpaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepositoryJpaImpl.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BeheerBoerderijenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BeheerBoerderijenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BeheerProductenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BeheerProductenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Boerderij.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Boerderij.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/csaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/csaRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/csaRepositoryJpaImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/csaRepositoryJpaImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/beheerboerderijen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/beheerboerderijen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/beheerproducten.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/beheerproducten.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csa.db" beforeDir="false" afterPath="$PROJECT_DIR$/csa.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BeheerBoerderijenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BeheerBoerderijenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BeheerKlantenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BeheerKlantenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BeheerProductenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BeheerProductenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Boerderij.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Boerderij.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepositoryJpaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/csaRepositoryJpaImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/beheerboerderijen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/beheerboerderijen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/beheerklanten.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/beheerklanten.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/beheerproducten.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/beheerproducten.fxml" afterDir="false" />
+>>>>>>> fd1bc356091523e08646e77d54301a042966a40d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,8 +111,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -127,6 +155,7 @@
       <command value="gradle run" />
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.Model">
     <configuration name="Model" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="be.kuleuven.csa.domain.Model" />
@@ -141,6 +170,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+  <component name="RunManager" selected="Application.ProjectMain">
+>>>>>>> fd1bc356091523e08646e77d54301a042966a40d
     <configuration name="ProjectMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="be.kuleuven.csa.ProjectMain" />
       <module name="project-template.main" />
@@ -265,4 +297,101 @@
     <MESSAGE value="boerderij, verkoopt,koopt,klant, Pakketbeschrijving, product zijn klaar in db." />
     <option name="LAST_COMMIT_MESSAGE" value="boerderij, verkoopt,koopt,klant, Pakketbeschrijving, product zijn klaar in db." />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="WindowStateProjectService">
+    <state x="2729" y="266" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608742233626">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state x="2729" y="266" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608742233626" />
+    <state x="2047" y="359" key="#com.intellij.fileTypes.FileTypeChooser/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604571080590" />
+    <state x="3005" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1609081176584">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state x="3005" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1609081176584" />
+    <state x="3005" y="416" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729735035" />
+    <state x="814" y="309" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608914453775" />
+    <state x="2930" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608995508759">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state x="2930" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608995508759" />
+    <state x="2273" y="263" width="729" height="573" key="#xdebugger.evaluate" timestamp="1604572497531">
+      <screen x="1440" y="23" width="1920" height="1053" />
+    </state>
+    <state x="2273" y="263" width="729" height="573" key="#xdebugger.evaluate/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604572497531" />
+    <state x="2980" y="455" key="FileChooserDialogImpl" timestamp="1608726969371">
+      <screen x="1920" y="0" width="2560" height="1400" />
+    </state>
+    <state x="2980" y="455" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608726969371" />
+    <state width="2517" height="423" key="GridCell.Tab.0.bottom" timestamp="1609081218611">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="423" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1609081218611" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+    <state width="1877" height="423" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608914171126" />
+    <state width="1878" height="356" key="GridCell.Tab.0.bottom/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785520" />
+    <state width="1878" height="288" key="GridCell.Tab.0.bottom/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232654" />
+    <state width="2517" height="423" key="GridCell.Tab.0.center" timestamp="1609081218611">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="423" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1609081218611" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+    <state width="1877" height="423" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608914171126" />
+    <state width="1878" height="356" key="GridCell.Tab.0.center/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785518" />
+    <state width="1878" height="288" key="GridCell.Tab.0.center/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232653" />
+    <state width="2517" height="423" key="GridCell.Tab.0.left" timestamp="1609081218611">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="423" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1609081218611" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+    <state width="1877" height="423" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608914171126" />
+    <state width="1878" height="356" key="GridCell.Tab.0.left/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785517" />
+    <state width="1878" height="288" key="GridCell.Tab.0.left/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232653" />
+    <state width="2517" height="423" key="GridCell.Tab.0.right" timestamp="1609081218611">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="423" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1609081218611" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608729877103" />
+    <state width="1877" height="423" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608914171126" />
+    <state width="1878" height="356" key="GridCell.Tab.0.right/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785519" />
+    <state width="1878" height="288" key="GridCell.Tab.0.right/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567232654" />
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1608803242054">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608803242054" />
+    <state width="1878" height="356" key="GridCell.Tab.1.bottom/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785522" />
+    <state width="2517" height="492" key="GridCell.Tab.1.center" timestamp="1608803242054">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608803242054" />
+    <state width="1878" height="356" key="GridCell.Tab.1.center/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785521" />
+    <state width="2517" height="492" key="GridCell.Tab.1.left" timestamp="1608803242054">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608803242054" />
+    <state width="1878" height="356" key="GridCell.Tab.1.left/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785520" />
+    <state width="2517" height="492" key="GridCell.Tab.1.right" timestamp="1608803242054">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="492" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608803242054" />
+    <state width="1878" height="356" key="GridCell.Tab.1.right/1440.23.1920.1053/0.23.1440.877@1440.23.1920.1053" timestamp="1604573785522" />
+    <state x="1909" y="188" key="SettingsEditor" timestamp="1604566801549">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1909" y="188" key="SettingsEditor/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604566801549" />
+    <state x="2792" y="252" key="Vcs.Push.Dialog.v2" timestamp="1608995796031">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state x="2792" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1608995796031" />
+    <state x="2792" y="433" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.2560.1400@1920.0.2560.1400" timestamp="1608728833865" />
+    <state x="3017" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609073599180">
+      <screen x="1920" y="-181" width="2560" height="1400" />
+    </state>
+    <state x="3017" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.-181.2560.1400@1920.-181.2560.1400" timestamp="1609073599180" />
+    <state x="2065" y="255" width="670" height="675" key="run.anything.popup" timestamp="1604567069727">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2065" y="255" width="670" height="675" key="run.anything.popup/1440.23.1920.1057/0.23.1440.873@1440.23.1920.1057" timestamp="1604567069727" />
+  </component>
+>>>>>>> fd1bc356091523e08646e77d54301a042966a40d
 </project>

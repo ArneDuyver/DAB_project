@@ -23,6 +23,9 @@ public class Boerderij {
     @OneToMany(mappedBy = "boerderij")
     private List<Verkoopt> verkooptList;
 
+    public Boerderij() {
+    }
+
     public Boerderij(String naam, String adres, String email, String rekeningnummer) {
         this.naam = naam;
         this.adres = adres;

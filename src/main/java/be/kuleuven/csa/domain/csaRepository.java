@@ -9,16 +9,19 @@ public interface csaRepository {
     void deleteObjectFromDb(Object object);
 
     List<Boerderij> getBoerderijByName(String boerderij);
+    List<Boerderij> getBoerderij();
     void saveNewBoerderij(Boerderij boerderij);
     void updateBoerderij(Boerderij boerderij);
     void deleteBoerderij(Boerderij boerderij);
 
     List<Product> getProductByName(String product);
+    List<Product> getProduct();
     void saveNewProduct(Product product);
     void updateProduct(Product product);
     void deleteProduct(Product product);
 
     List<Klant> getKlantByName(String klant);
+    List<Klant> getKlant();
     void saveNewKlant(Klant klant);
     void updateKlant(Klant klant);
     void deleteKlant(Klant klant);

@@ -23,6 +23,9 @@ public class Product {
         this.bevatList = new ArrayList<>();
     }
 
+    public Product() {
+    }
+
     public List<Bevat> getBevatList() {
         return bevatList;
     }
