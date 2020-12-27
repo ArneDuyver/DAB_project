@@ -13,6 +13,8 @@
         <class>be.kuleuven.csa.domain.Koopt</class>
         <class>be.kuleuven.csa.domain.BehoortTot</class>
         <class>be.kuleuven.csa.domain.PakketInhoud</class>
+        <class>be.kuleuven.csa.domain.Bevat</class>
+        <class>be.kuleuven.csa.domain.HaaltAf</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:csa.db"/>

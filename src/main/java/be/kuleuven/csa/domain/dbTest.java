@@ -19,6 +19,9 @@ public class dbTest {
             var verkoopt = new Verkoopt(200,"2020-12-24",nieuwhuis,medium);
             var contract = new Koopt(verkoopt,Kamiel);
             var pakketinhoud = new PakketInhoud("tutifruti");
+            var behoortTot = new BehoortTot(1,verkoopt,pakketinhoud);
+            var bevat1  =new Bevat("aantal",3,pakketinhoud,appel);
+            var haaltaf = new HaaltAf(behoortTot,Kamiel);
             //var verkoopt2 = new Verkoopt(300, "2020-12-24",nieuwhuis,medium);
             repo.saveNewBoerderij(nieuwhuis);
             repo.saveNewProduct(appel);
@@ -27,6 +30,9 @@ public class dbTest {
             repo.saveNewVerkoopt(verkoopt);
             repo.saveNewKoopt(contract);
             repo.saveNewPakketinhoud(pakketinhoud);
+            repo.saveNewBehoortTot(behoortTot);
+            repo.saveNewBevat(bevat1);
+            repo.saveNewHaaltAf(haaltaf);
             nieuwhuis.setAdres("Boshoeve 12");
             appel.setNaam("jonagold");
             Kamiel.setEmail("kamiel.allard@student.uhasselt.com");

@@ -21,6 +21,8 @@ public class Verkoopt {
     private Pakketbeschrijving pakketbeschrijving;
     @OneToMany(mappedBy = "verkoopt")
     private List<Koopt> kooptList;
+    @OneToMany(mappedBy = "verkoopt")
+    private List<BehoortTot> behoortTotList;
 
 
     public Verkoopt(int prijs, String startdatum, Boerderij boerderij,Pakketbeschrijving pakketbeschrijving) {
@@ -31,8 +33,12 @@ public class Verkoopt {
         this.pakketbeschrijving = pakketbeschrijving;
         pakketbeschrijving.getVerkooptList().add(this);
         this.kooptList = new ArrayList<Koopt>();
+        this.behoortTotList = new ArrayList<>();
     }
 
+    public List<BehoortTot> getBehoortTotList() {
+        return behoortTotList;
+    }
 
     public List<Koopt> getKooptList() {
         return kooptList;

@@ -19,6 +19,8 @@ public class Klant {
     private String telefoonnummer;
     @OneToMany(mappedBy = "klant")
     private List<Koopt> kooptList;
+    @OneToMany(mappedBy = "klant")
+    private List<HaaltAf> haaltAfList;
 
     public Klant(String naam, String adres, String email, String telefoonnummer) {
         this.naam = naam;
@@ -26,6 +28,11 @@ public class Klant {
         this.email = email;
         this.telefoonnummer = telefoonnummer;
         this.kooptList = new ArrayList<Koopt>();
+        this.haaltAfList = new ArrayList<>();
+    }
+
+    public List<HaaltAf> getHaaltAfList() {
+        return haaltAfList;
     }
 
     public List<Koopt> getKooptList() {
